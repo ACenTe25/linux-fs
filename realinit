@@ -1,0 +1,20 @@
+#!/bin/sh
+
+mount -t devtmpfs devtmpfs /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t tmpfs tmpfs /run
+
+ln -sv /proc/self/mounts /etc/mtab
+
+echo 1 > /proc/sys/kernel/printk
+
+echo linuxfs-test > /proc/sys/kernel/hostname
+
+sleep 1
+
+clear
+
+echo -e "\n\nhello world\n\n"
+
+exec /bin/sh
